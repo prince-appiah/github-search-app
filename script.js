@@ -12,10 +12,10 @@ search_btn.addEventListener("click", (e) => {
     searching.innerHTML = "Looking for user...";
     setTimeout(() => {
       getUserDetaile(`${ENDPOINT}/${search_term.value}`);
-    }, 2000);
+    }, 3000);
     setTimeout(() => {
-      getRepoDetaile(`${ENDPOINT}/${search_term.value}/repos`);
-    }, 1000);
+      getRepoDetails(`${ENDPOINT}/${search_term.value}/repos`);
+    }, 3000);
   } else {
     alert("please enter any github username");
     search_term.focus();
@@ -89,7 +89,7 @@ function showUserDetails(data) {
 async function getUserDetaile(api) {
   let query = await fetch(api)
     .then(async (query) => {
-      return query.json();
+      return await query.json();
     })
     .then((result) => {
       if (result.name == null) {
@@ -105,10 +105,10 @@ async function getUserDetaile(api) {
 }
 
 // function to get repositories link
-async function getRepoDetaile(repi_api) {
+async function getRepoDetails(repi_api) {
   let repo_query = await fetch(repi_api)
     .then(async (repo_query) => {
-      return repo_query.json();
+      return await repo_query.json();
     })
     .then((repo_result) => {
       repo.push(repo_result);
